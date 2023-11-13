@@ -1,0 +1,61 @@
+{% extends 'base.html' %} {% block title %}About Us{% endblock %} {% block link %}
+<link
+	rel="stylesheet"
+	href="https://unpkg.com/boxicons@latest/css/boxicons.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+	href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+	rel="stylesheet" />
+
+<link rel="stylesheet" href="/media/css/about_us.css"/>
+{% endblock %} {% block content %}
+
+<!-- header design -->
+
+<header>
+	<a href="{% url 'index' %}" class="logo">IT<span>ECS</span></a>
+
+	<ul class="navlist">
+		<li><a href="{% url 'index' %}" class="active">Home</a></li>
+		<li><a href="{% url 'index' %}">Hi, <span style="color: #ff4d05;">{{ request.user.get_full_name }}</span></a></li>
+		<li><a href="{% url 'logout' %}">logout</a></li>
+	</ul>
+</header>
+
+<section>
+    <div class="about-text">
+		<h2>About <span>Us</span></h2>
+		<h4>Welcome to IT Eagle's Club Services!</h4>
+		<p>
+			At ITECS, we soar high above the rest, providing top-notch services in the dynamic world of Information Technology. Our wingspan covers a wide range of offerings, from web designing to job placements, ensuring that you have everything you need to succeed in the digital age.
+
+			Web Designing Excellence:
+			At ITECS, we understand the crucial role that a captivating online presence plays in today's business landscape. Our expert team of web designers crafts stunning websites that not only leave a lasting impression but also provide an intuitive user experience. Whether you need a simple portfolio site or a complex e-commerce platform, we spread our wings to deliver tailor-made solutions that suit your unique requirements.
+
+			Jobs and Careers in IT:
+			Unleash your potential and spread your wings with ITECS! We take pride in being a bridge between talented IT professionals and rewarding career opportunities. Our extensive network of reputable companies allows us to connect you with the right job that aligns with your skills and aspirations. Whether you are a seasoned IT veteran or just starting your career, our team is here to guide you every step of the way.
+
+			Embracing Innovation:
+			As the digital landscape evolves, so do we. At ITECS, we are committed to staying at the forefront of technological advancements, spreading our wings wide to embrace innovation. Our team of tech enthusiasts and forward-thinkers keeps a keen eye on industry trends to ensure that our clients benefit from cutting-edge solutions that give them a competitive edge.
+
+			Community and Support:
+			ITECS is more than just a service provider; we are a vibrant community of IT eagles, soaring together towards excellence. We foster an environment of collaboration and support, where our clients and partners can connect, share knowledge, and grow together. As a member of our flock, you gain access to a wealth of resources, training opportunities, and industry insights that empower you to achieve your goals.
+
+			Join the ITECS Family:
+			We invite you to spread your wings and join the ITECS family. Whether you are looking for exceptional web designing services or seeking new opportunities in the IT job market, we are here to make your journey a soaring success.
+
+			Together, let's reach new heights in the digital realm.
+		</p>
+	</div>
+</section>
+<section class="end">
+	<div class="last-text">
+		<p>
+			Copyright <span><i class="bx bxs-copyright"></i></span> 2023, IT Eagles's
+			Club Services All rights Reserved.
+		</p>
+	</div>
+</section>
+<script type="text/javascript" src="/media/js/script.js"></script>
+{% endblock %}

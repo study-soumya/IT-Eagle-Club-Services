@@ -1,0 +1,25 @@
+{% extends 'services.html' %}
+{% block title %}ITECS Service Details{%endblock %} 
+{% block content %}
+<section>
+	<div class="container">
+		<div class="row text-center">
+			<div class="col-xl-10 mx-auto">
+				<img class="img-fluid mt-5 mb-5" src="/media/{{ service.image }}" alt="..." />
+			</div>
+		</div>
+		<div>
+			<div class="row">
+				<div class="col-xl-8 col-lg-10 mx-auto mt-5 text-lg text-light">
+					<span style="color: #ff4d05;" class="text-lg">{{ service.title }}</span> 
+				</div>
+			</div>
+
+		<div class="row">
+			<div class="col-xl-8 col-lg-10 mx-auto mt-2 text-lg">
+				<div class="text-content">{{ service.description|safe }}</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

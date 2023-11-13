@@ -1,0 +1,59 @@
+{% extends 'services.html' %}
+{% block title %}Add ITECS Services{%endblock %} 
+{% block content %}
+<section>
+	<div class="container mt-6">
+		<h2 style="color: #ff4d05;">Add Services</h2>
+		<form
+			method="post"
+			action="{% url 'add_services' %}"
+			enctype="multipart/form-data"
+			class="pt-5 mb-5 pb-5">
+			{% csrf_token %}
+			<div class="row">
+				<div class="col-md-12">
+					<label for="title" style="color: #ccc">Add Title:</label>
+					<input
+						type="text"
+						class="form-control"
+						placeholder="Enter Service Title"
+						name="title"
+						required />
+				</div>
+
+                <div class="col-md-12">
+					<label for="icon" style="color: #ccc">Add Icon:</label>
+					<input
+						type="text"
+						class="form-control"
+						placeholder="eg: bx bx-code-alt"
+						name="icon"
+						required />
+				</div>
+				
+				<div class="col-md-12 pt-3" style="color: #ccc">
+					{{ form.media}} {{ form.as_p }}
+				</div>
+
+				<div class="col-md-12 pt-3">
+					<label style="color: #ccc">Add Image</label>
+				</div>
+				<div class="col-md-12">
+					<input type="file" name="image" style="color: #ccc" />
+				</div>
+
+				<div>
+					<button type="submit" class="btn btn-info hover-animate mt-5">
+						Create Service
+					</button>
+					<a
+						href="{% url 'index' %}"
+						class="btn btn-danger hover-animate mt-5 mx-2"
+						>Cancel</a
+					>
+				</div>
+			</div>
+		</form>
+	</div>
+</section>
+{% endblock %}

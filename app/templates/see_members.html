@@ -1,0 +1,37 @@
+{% extends 'members.html' %} {% block title %}ITECS Members Data{% endblock %}
+{% block content %}
+<section class="mt-5 pt-5">
+	<div class="container">
+        <h1 class="text-white">All <span style="color: #ff4d05;">Members</span></h1><br />
+		<table class="table" style="color: #ccc">
+			<thead>
+				<tr class="text-center">
+					<th scope="col">#</th>
+					<th scope="col">Member Name</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for member in member_objs %}
+				<tr class="text-center">
+					<th scope="row">{{forloop.counter}}</th>
+					<td>{{member.name}}</td>
+					<td>
+						<a
+							href="{%  url 'update_members' member.slug %}"
+							class="btn btn-success mr-2 hover-animate"
+							>Update</a
+						>
+						<a
+							href="{% url 'delete_members' member.id %}"
+							class="btn btn-danger hover-animate"
+							>Delete</a
+						>
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</section>
+{% endblock %}

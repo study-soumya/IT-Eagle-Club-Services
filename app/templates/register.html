@@ -1,0 +1,99 @@
+{% extends 'base.html' %} {% block title %}ITECS login{% endblock %} 
+{% block link %}
+<link rel="stylesheet" href="/media/css/registration.css" />
+{% endblock %} {% block content %}
+<div class="container">
+	<div class="title">Sign Up</div>
+	<form method="post">
+		{% csrf_token %}
+		<div class="txt_field">
+			<input
+				type="text"
+				name="firstName"
+				title="Enter first name"
+				autocomplete="off"
+				required />
+			<span></span>
+			<label for="firstName">First Name</label>
+		</div>
+		<div class="txt_field">
+			<input
+				type="text"
+				name="lastName"
+				title="Enter last name"
+				autocomplete="off"
+				required />
+			<span></span>
+			<label for="lastName">Last Name</label>
+		</div>
+		<div class="txt_field">
+			<input
+				type="text"
+				name="username"
+				id="username"
+				title="Enter your username"
+				autocomplete="off"
+				required />
+			<span></span>
+			<label for="username">Username</label>
+		</div>
+		<div class="txt_field">
+			<input
+				type="email"
+				name="email"
+				id="email"
+				title="Enter your email"
+				autocomplete="off"
+				required />
+			<span></span>
+			<label for="email">Email</label>
+		</div>
+		<div class="txt_field">
+			<input
+				type="text"
+				name="phone-number"
+				id="phone-number"
+				title="Enter your number"
+				autocomplete="off"
+				required />
+			<span></span>
+			<label for="phone-number">Phone Number</label>
+		</div>
+		<div class="txt_field">
+			<input
+				type="password"
+				name="password"
+				id="password"
+				title="Enter password"
+				autocomplete="off"
+				required />
+			<span></span>
+			<label for="password">Password</label>
+		</div>
+		<div class="txt_field">
+			<input
+				type="password"
+				name="confirm_password"
+				id="confirm_password"
+				title="Confirm password"
+				autocomplete="off"
+				required />
+			<span></span>
+			<label for="confirm_password">Confirm Password</label>
+		</div>
+
+		<div class="button">
+			<input type="submit" value="Sign Up" />
+		</div>
+
+		<div class="signin_link">
+			Already have an account? <a href="{% url 'login' %}">Login</a>
+		</div>
+	</form>
+	{% if messages %} {% for message in messages %} {% if message.tags %}
+	<h4 style="color: #f00; text-align: center; margin-top: 10px">
+		{{ message }}
+	</h4>
+	{% endif %} {% endfor %} {% endif %}
+</div>
+{% endblock %}

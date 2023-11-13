@@ -1,0 +1,116 @@
+{% extends 'members.html' %} {% block title %}Update Profile{%endblock %}
+{% block content %}
+<section>
+	<div class="container mt-6">
+		<h2 style="color: #ff4d05">Update Profile Details</h2>
+		<form
+			method="post"
+			enctype="multipart/form-data"
+			class="pt-5 mb-5 pb-5">
+			{% csrf_token %}
+			<div class="row">
+				<div class="col-md-12">
+					<label for="fullName" style="color: #ccc">Change Name:</label>
+					<input
+						type="text"
+						class="form-control"
+						value="{{ member.name }}"
+						placeholder="Full Name"
+						name="fullName" />
+				</div>
+				<div class="col-md-12">
+					<label for="username" style="color: #ccc">Change Username:</label>
+					<input
+						type="text"
+						class="form-control"
+						value="{{ member.username }}"
+						placeholder="Full Name"
+						name="username" />
+				</div>
+				<div class="col-md-12 pt-3">
+					<label for="company-name" style="color: #ccc">Change Company:</label>
+					<input
+						type="text"
+						class="form-control"
+						value="{{ member.company_name }}"
+						placeholder="Company Name"
+						name="company-name" />
+				</div>
+				<div class="col-md-12 pt-3">
+					<label for="job-title" style="color: #ccc">Change Job Title:</label>
+					<input
+						type="text"
+						class="form-control"
+						value="{{ member.job_title }}"
+						placeholder="eg: Python Developer/Java Developer/Architecture"
+						name="job-title" />
+				</div>
+				<div class="col-md-12 pt-3">
+					<label for="job-designation" style="color: #ccc"
+						>Change Job Designation:</label
+					>
+					<input
+						type="text"
+						class="form-control"
+						value="{{ member.job_designation }}"
+						placeholder="eg: Senior/Junior "
+						name="job-designation" />
+				</div>
+				<div class="col-md-12 pt-3">
+					<label for="work-experience" style="color: #ccc"
+						>Change Work Experience:</label
+					>
+					<input
+						type="text"
+						class="form-control"
+						value="{{ member.work_experience }}"
+						placeholder="5+ Years"
+						name="work-experience" />
+				</div>
+				<div class="col-md-12 pt-3">
+					<label for="email" style="color: #ccc">Change Email:</label>
+					<input
+						type="email"
+						class="form-control"
+						value="{{ member.email }}"
+						placeholder="eg: name@gmail.com"
+						name="email" />
+				</div>
+				<div class="col-md-12 pt-3" style="color: #ccc">
+					{{ form.media}} {{ form.as_p }}
+				</div>
+
+				<div class="col-md-12 pt-3">
+					<label style="color: #ccc">Change Profile Picture</label>
+				</div>
+				{% if member.profile_image %}
+				<div class="col-md-12">
+					<input
+						type="file"
+						name="image"
+						value="{{ member.profile_image.url }}"
+						style="color: #ccc" />
+				</div>
+				{% else %}
+				<div class="col-md-12">
+					<input type="file" name="image" style="color: #ccc" />
+				</div>
+				{% endif %}
+				<div>
+					<button type="submit" class="btn btn-info hover-animate mt-5 mx-2">
+						Update Member
+					</button>
+
+					<a href="{% url 'delete_members' member.id %}" class="btn btn-danger hover-animate mt-5">Delete</a>
+
+					<a
+						href="{% url 'index' %}"
+						class="btn btn-warning hover-animate mt-5 mx-2"
+						>Cancel</a
+					>
+				</div>
+			</div>
+		</form>
+	</div>
+</section>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base1.html" %} {% block start %}
+
+<section class="mt-5 pt-5">
+	<div class="container">
+		{% if blog_objs %}
+		<table class="table" style="color: #ccc">
+			<thead>
+				<tr class="text-center">
+					<th scope="col">#</th>
+					<th scope="col">Blog title</th>
+					<th scope="col">Created at</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for blog in blog_objs %}
+				<tr class="text-center">
+					<th scope="row">{{forloop.counter}}</th>
+					<td>{{blog.title}}</td>
+					<td>{{blog.created_at}}</td>
+					<td>
+						<a
+							href="{%  url 'blog_update' blog.slug %}"
+							class="btn btn-success mr-2 hover-animate"
+							>Update</a
+						>
+						<a
+							href="{% url 'blog_delete' blog.id %}"
+							class="btn btn-danger hover-animate"
+							>Delete</a
+						>
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		{% else %}
+			<h3 class="text-center text-white my-4">You haven't added any Blog yet!</h3>
+			<a href="{% url 'add_blog' %}" class="justify-content-center btn btn-outline-info mb-5" target="_blank">Add a Blog</a>
+		{% endif %}
+	</div>
+</section>
+
+{% endblock %}

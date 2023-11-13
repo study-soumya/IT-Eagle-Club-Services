@@ -1,0 +1,227 @@
+{% extends 'base.html' %} {% block title %}ITECS{% endblock %} {% block link %}
+<link rel="shortcut icon" href="/media/images/favicon.ico">
+<link
+	rel="stylesheet"
+	href="https://unpkg.com/boxicons@latest/css/boxicons.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+	href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+	rel="stylesheet" />
+
+<link rel="stylesheet" href="/media/css/index.css" />
+{% endblock %} {% block content %}
+<!-- header design -->
+
+<header>
+	<a href="{% url 'index' %}" class="logo">IT<span>ECS</span></a>
+
+	<ul class="navlist">
+		{% if not request.user.is_authenticated %}
+		<li><a href="{% url 'index' %}" class="active">Home</a></li>
+		<li><a href="{% url 'login' %}">login</a></li>
+		{% endif %} {% if request.user.is_authenticated and not request.user.is_superuser %}
+		<li><a href="{% url 'index' %}" class="active">Home</a></li>
+		<li><a href="#about">About</a></li>
+		<li><a href="#services">Services</a></li>
+		<li><a href="#members">Members</a></li>
+		<li><a href="#contact_us">Contact Us</a></li>
+		<li><a href="{% url 'logout' %}">Logout</a></li>
+		{% endif %}
+		{% if request.user.is_superuser %}
+		<li><a href="{% url 'add_members' %}">Add Members</a></li>
+		<li><a href="{% url 'see_members' %}">Members</a></li>
+		<li><a href="{% url 'add_services' %}">Add Services</a></li>
+		<li><a href="{% url 'see_services' %}">Services</a></li>
+		<li><a href="{% url 'logout' %}">Logout</a></li>
+		{% endif %}
+	</ul>
+
+	<div class="bx bx-menu" id="menu-icon"></div>
+</header>
+
+<!-- home section design -->
+<section class="home" id="home">
+	<div class="home-text">
+		{% if request.user.is_authenticated %}
+		<div class="slide">
+			<span class="one">Hello</span>
+			<span class="two"><span>{{ user.first_name|title }} </span>{{ user.last_name|title }}</span>
+		</div>
+		<h2><span>WELCOME </span> TO</h2>
+		<h1>IT EAGLE's</h1>
+		<h3>CLUB <span>SERVICES</span></h3>
+		<p>
+			Web Developer with 5+ years experience that keep customers <br />
+			coming back for about services makes best effort.
+		</p>
+		{% else %}
+		<h1>IT EAGLE's</h1>
+		<h3>CLUB <span>SERVICES</span></h3>
+		<p>
+			Web Developer with 5+ years experience that keep customers <br />
+			coming back for about services makes best effort.
+		</p>
+		{% endif %}
+		<div class="button">
+			{% if request.user.is_authenticated %}
+			<a href="{% url 'blog' %}" class="btn">Our Blogs</a>
+			<a href="{% url 'our_work' %}" class="btn2"
+				><span><i class="bx bx-play"></i></span>Watch Our Work</a
+			>
+			{% else %}
+			<a href="{% url 'login' %}" class="btn">Our Blogs</a>
+			<a href="{% url 'login' %}" class="btn2"
+				><span><i class="bx bx-play"></i></span>Watch Our Work</a
+			>
+			{% endif %}
+		</div>
+	</div>
+</section>
+
+<!-- about section design -->
+{% if request.user.is_authenticated %}
+<section class="about" id="about">
+	<div class="about-img">
+		<img src="/media/images/aboutus.jpg" alt="Oops!!!" />
+	</div>
+	<div class="about-text">
+		<h2>About <span>Us</span></h2>
+		<h4>IT Eagle's Services Club!</h4>
+		<p>
+			Check out 10 Best Design's updates for the top web design & development
+			companies for your needs by reviewing our list & development companies!
+			Find the best web design. Web Design Consulting. Comprehensive Directory.
+			Top Reviewed Design Firms. Types: Enterprise Design Firms, Startup Design
+			Firms, Custom Design Firms, eCommerce Design Firms, App Design Firms.
+			Custom Web Solution. 24x7 Customer Support. Secure Payment Gateway. Get A
+			Free Web Quote. 24/7 Chat Support. Services: Web Page Design, Landing Page
+			Design, App Development, Mobile Website Design.
+		</p>
+		<a href="{% url 'about_us' %}" class="btn">More About</a>
+	</div>
+</section>
+
+<!-- services section design -->
+
+<section class="services" id="services">
+	<div class="main-text">
+		<p>What We are providing</p>
+		<h2><span>Our</span> Services</h2>
+	</div>
+
+	<div class="services-content">
+		{% for service in services %}
+		<div class="service-card">
+			<div class="box">
+				<div class="s-icons">
+					<i class="{{ service.icon }}"></i>
+				</div>
+				<h3><span>{{ service.title }}</span></h3>
+				<p>
+					{{ service.description | striptags | truncatewords:15 }}
+				</p>
+				<a href="{% url 'services_detail' service.slug %}" class="read">Read More</a>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</section>
+
+<!-- member section design -->
+<section class="members" id="members">
+	<div class="main-text">
+		<p>Connections we have</p>
+		<h2><span>Our</span> Members</h2>
+	</div>
+	<div class="members-content">
+		{% for member in members %}
+		<div class="member-card">
+			<!-- Add a container for each member card -->
+			<div class="row">
+				<img src="/media/{{ member.profile_image }}" alt="Oops!!!" />
+				<div class="layer">
+					<h3>{{ member.name }}</h3>
+					<h5>
+						{{ member.job_designation }} <span>{{ member.job_title }}</span>
+					</h5>
+					<p>
+						{{ member.description | striptags | truncatewords:20 }}
+					</p>
+					<a href="{% url 'members_detail' member.slug %}"
+						><i class="bx bx-link-external"></i
+					></a>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</section>
+
+<!-- contact us section design -->
+<section class="contact" id="contact_us">
+	<div class="contact-text">
+		<h2>Contact <span>Us!</span></h2>
+		<h4>If You Have Any Project In Your Mind.</h4>
+		<p>
+			We are IT Eagle's Club Services - we're providing the best services
+			to our clients all across the world.
+		</p>
+		<div class="list">
+			<li><a href="#"><i class='bx bx-mobile'></i> +91 123-456-8888</a></li>
+			<li><a href="#"><i class='bx bxs-envelope' ></i> iteagleclubservices@gmail.com</a></li>
+			<li><a href="#"><i class='bx bxs-bell-ring' ></i> Like Share & Subscribe</a></li>
+		</div>
+
+		<div class="contact-icons">
+			<a href="#"><i class='bx bxl-meta'></i></a>
+			<a href="#"><i class="bx bxl-twitter"></i></a>
+			<a href="#"><i class="bx bxl-instagram-alt"></i></a>
+			<a href="#"><i class="bx bxl-youtube"></i></a>
+			<a href="#"><i class='bx bxl-github'></i></a>
+		</div>
+	</div>
+
+	<div class="contact-form">
+		<form action="{% url 'contact_us' %}" method="post">
+			{% csrf_token %}
+			<input type="text" name="name" placeholder="Your Name" required />
+			<input type="email" name="email" placeholder="Your Email" required />
+			<input type="text" name="mobile_number" placeholder="Your Mobile Number" required />
+			<textarea
+				name="message"
+				id=""
+				cols="35"
+				rows="10"
+				placeholder="How Can I Help You"
+				required></textarea>
+			<input type="submit" value="Send Message" class="submit" required />
+		</form>
+		{% if messages %}
+			{% for message in messages %}
+				{% if message.tags %} 
+					<h4 style="margin-top: 10px;"><span>{{ message }}</span></h4>
+				{% endif %}
+			{% endfor %}
+		{% endif %}
+	</div>
+</section>
+{% endif %}
+
+<!-- end section design -->
+<section class="end">
+	<div class="last-text">
+		<p>
+			Copyright <span><i class="bx bxs-copyright"></i></span> 2023, IT Eagles's
+			Club Services All rights Reserved.
+		</p>
+	</div>
+
+	<div class="top">
+		<a href="{% url 'index' %}"><i class="bx bx-up-arrow-alt"></i></a>
+	</div>
+</section>
+
+<!-- custom js link -->
+<script type="text/javascript" src="/media/js/script.js"></script>
+{% endblock %}

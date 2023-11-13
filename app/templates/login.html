@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}ITECS login{% endblock %}
+{% block link %}
+    <link rel="stylesheet" href="/media/css/login.css">
+{% endblock %}
+
+{% block content %}
+    <!-- Login Form -->
+    <div class="center">
+        <h1>Login</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="txt_field">
+                <input type="text" name="username" id="username" title="Enter Username" autocomplete="off" required>
+                <span></span>
+                <label for="username">Username</label>
+            </div>
+            <div class="txt_field">
+                <input type="password" name="password" id="password" title="Enter Password" autocomplete="off" required>
+                <span></span>
+                <label for="password">Password</label>
+            </div>
+            <div class="pass">
+                <a href="#">Forgot Password?</a>
+            </div>
+            <div class="button">
+                <input type="submit" value="Sign In">
+            </div>
+            <div class="signup_link">
+                Don't have an account? <a href="{% url 'register' %}">Sign Up</a>
+            </div>
+        </form>
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags %} 
+                    <h4 style="color: #f00; text-align:center; margin-top: 10px;">{{ message }}</h4>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}

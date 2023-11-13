@@ -1,0 +1,106 @@
+{% extends 'members.html' %}
+{% block title %}Add ITECS Members{%endblock %} 
+{% block content %}
+<section>
+	<div class="container mt-6">
+		<h2 style="color: #ff4d05;">Add Member's Profile Details</h2>
+		<form
+			method="post"
+			action="{% url 'add_members' %}"
+			enctype="multipart/form-data"
+			class="pt-5 mb-5 pb-5">
+			{% csrf_token %}
+			<div class="row">
+				<div class="col-md-12">
+					<label for="fullName" style="color: #ccc">Name:</label>
+					<input
+						type="text"
+						class="form-control"
+						placeholder="Full Name"
+						name="fullName"
+						required />
+				</div>
+				<div class="col-md-12 pt-3">
+					<label for="username" style="color: #ccc">Username:</label>
+					<input
+						type="text"
+						class="form-control"
+						placeholder="Username"
+						name="username"
+						required />
+				</div>
+				<div class="col-md-12 pt-3">
+					<label for="company-name" style="color: #ccc">Company:</label>
+					<input
+						type="text"
+						class="form-control"
+						placeholder="Company Name"
+						name="company-name"
+						required />
+				</div>
+				<div class="col-md-12 pt-3">
+					<label for="job-title" style="color: #ccc">Job Title:</label>
+					<input
+						type="text"
+						class="form-control"
+						placeholder="eg: Python Developer/Java Developer/Architecture"
+						name="job-title"
+						required />
+				</div>
+				<div class="col-md-12 pt-3">
+					<label for="job-designation" style="color: #ccc"
+						>Job Designation:</label
+					>
+					<input
+						type="text"
+						class="form-control"
+						placeholder="eg: Senior/Junior "
+						name="job-designation"
+						required />
+				</div>
+				<div class="col-md-12 pt-3">
+					<label for="work-experience" style="color: #ccc"
+						>Work Experience:</label
+					>
+					<input
+						type="text"
+						class="form-control"
+						placeholder="5+ Years"
+						name="work-experience"
+						required />
+				</div>
+				<div class="col-md-12 pt-3">
+					<label for="email" style="color: #ccc">Email:</label>
+					<input
+						type="email"
+						class="form-control"
+						placeholder="eg: name@gmail.com"
+						name="email"
+						required />
+				</div>
+				<div class="col-md-12 pt-3" style="color: #ccc">
+					{{ form.media}} {{ form.as_p }}
+				</div>
+
+				<div class="col-md-12 pt-3">
+					<label style="color: #ccc">Add Profile Picture</label>
+				</div>
+				<div class="col-md-12">
+					<input type="file" name="image" style="color: #ccc" />
+				</div>
+
+				<div>
+					<button type="submit" class="btn btn-info hover-animate mt-5">
+						Create Member
+					</button>
+					<a
+						href="{% url 'index' %}"
+						class="btn btn-danger hover-animate mt-5 mx-2"
+						>Cancel</a
+					>
+				</div>
+			</div>
+		</form>
+	</div>
+</section>
+{% endblock %}
