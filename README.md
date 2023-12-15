@@ -10,7 +10,6 @@
 * [License](#license)
 * [Website Images](#websiteimages)
 
-
 ### Features
 
 * ITECS provides services like online courses on different topics (Web Development, Full Stack Development, Online Marketing, Digital Marketing, and etc.) and we also support social services (Tree Plantation Program, Blood Donation Camp, etc).
@@ -25,41 +24,44 @@
 1. Clone the repository:
 
    ```shell
-   git clone <repository-url>
+   git clone https://github.com/study-soumya/IT-Eagle-Club-Services
    cd IT-Eagle-Club-Services
    ```
 2. Make Virtual Environment:
 
    ```shell
-   python -m venv environment_name
-   cd environment_name
-   command prompt: ./Scripts/activate
-   or git bash: source environment_name/Scripts/activate
-   cd ..
+   python -m venv env
    ```
-3. Install the required Python packages:
+3. Activate Environment:
 
    ```shell
-   pip install -r requirements.txt
+   Windows: ./env/Scripts/activate
+   Bash: source env/Scripts/activate
    ```
-4. Configure the database settings in `ITECS/settings.py`.
-5. Apply migrations:
+4. Install the required Python packages:
+
+```shell
+pip install -r requirements.txt
+```
+
+5. Configure the database settings in `ITECS/settings.py`.
+6. Apply migrations:
 
    ```shell
    python manage.py makemigrations
    python manage.py migrate
    ```
-6. Create a superuser for admin access:
+7. Create a superuser for admin access:
 
    ```shell
    python manage.py createsuperuser
    ```
-7. Run the development server:
+8. Run the development server:
 
    ```shell
    python manage.py runserver
    ```
-8. Username & Password:
+9. Username & Password:
 
    ```shell
    usename: demo
@@ -95,6 +97,8 @@ Please ensure your code follows best practices and includes appropriate tests.
 ### License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+### Live Website: [IT Eagle&#39;s Club Services](https://sonusoum.pythonanywhere.com/)
 
 ### Website Images
 
